@@ -1,0 +1,31 @@
+# "org" ensures this Service is used with the correct Serverless Framework Access Key.
+org: vinojv
+# "service" is the name of this project. This will also be added to your AWS resource names.
+service: lambda-backend
+
+plugins:
+  - serverless-offline
+
+custom:
+  serverless-offline:
+    httpPort: 4000
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  stage: production
+  region: us-east-1
+
+functions:
+  api:
+    handler: handler.ping
+    events:
+      - httpApi: 
+          method: '*'
+          path: /ping
+  auth:
+    handler: module_auth/handler.app
+    events:
+      - httpApi: 
+          method: '*'
+          path: /auth/{proxy+}
