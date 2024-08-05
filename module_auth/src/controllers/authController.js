@@ -12,7 +12,7 @@ const tblUser = "users";
 // register
 exports.register = async (req, res, next) => {
   try {
-    const { email, password, cpassword, fname, lname, profile_picture } = req.body;
+    const { email, password, cpassword, fname, lname } = req.body;
 
     if (!email || !password || !fname || !lname, !cpassword) {
       throw new BadRequest("Required data is missing");
@@ -38,7 +38,6 @@ exports.register = async (req, res, next) => {
         username: email,
         firstname: fname,
         lastname: lname,
-        profile_picture: profile_picture,
       })
       .returning("*");
 
