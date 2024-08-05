@@ -17,6 +17,12 @@ provider:
   region: us-east-1
 
 functions:
+  pingDB:
+    handler: ping.dbCheck
+    events:
+      - httpApi:
+          path: server/ping/db
+          method: get
   api:
     handler: handler.ping
     events:
