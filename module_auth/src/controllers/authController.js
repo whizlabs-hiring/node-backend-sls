@@ -59,7 +59,7 @@ exports.login = async (req, res, next) => {
     }
 
     const user = await KnexB2BLms(tblUser)
-      .select("id", "email", "password", "username", "firstname", "lastname", "profile_picture", "deleted_at", "login_count")
+      .select("id", "email", "password", "username", "firstname", "lastname", "deleted_at", "login_count")
       .where('email', 'iLike', email)
       .first();
 
@@ -107,8 +107,7 @@ exports.login = async (req, res, next) => {
             name: {
                 first: user.firstname,
                 last: user.lastname,
-            },
-            profile_img: user.profile_picture,
+            }
         },
     });
   } catch (error) {
