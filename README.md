@@ -10,6 +10,36 @@ authorLink: 'https://github.com/serverless'
 authorName: 'Serverless, Inc.'
 authorAvatar: 'https://avatars1.githubusercontent.com/u/13742415?s=200&v=4'
 -->
+DB Schema:
+
+-- public.users definition
+
+-- Drop table
+
+-- DROP TABLE public.users;
+
+CREATE TABLE public.users (
+	id serial4 NOT NULL,
+	username varchar(255) NOT NULL,
+	email varchar(255) NOT NULL,
+	"password" varchar(255) NULL,
+	firstname varchar(255) NULL,
+	lastname varchar(255) NULL,
+	login_count int4 DEFAULT 0 NULL,
+	login_at timestamptz NULL,
+	logout_at timestamptz NULL,
+	remember_token text NULL,
+	created_at timestamptz DEFAULT CURRENT_TIMESTAMP NOT NULL,
+	updated_at timestamptz DEFAULT CURRENT_TIMESTAMP NOT NULL,
+	deleted_at timestamptz NULL,
+	suspended bool DEFAULT false NULL,
+	CONSTRAINT users_email_unique UNIQUE (email),
+	CONSTRAINT users_pkey PRIMARY KEY (id),
+);
+
+Note:
+DB Connection need to be updated in .env
+Default Port: 4000
 
 # Serverless Framework Node Express API on AWS
 
